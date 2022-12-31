@@ -12,4 +12,10 @@ require'cmp'.setup {
 }
 ```
 
+# Usage
+
+All the icons are prefixed with `nf-`
+
+![example](./cmp-nerdfont.gif)
+
 [nerd fonts]: https://www.nerdfonts.com/cheat-sheet
