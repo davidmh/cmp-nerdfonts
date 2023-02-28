@@ -3,17 +3,6 @@ local M = {}
 
 local items = {}
 
-for _, entry in ipairs(icons) do
-  local label = entry[1]
-  local icon = entry[2]
-
-  table.insert(items, {
-    label = label .. ' ' .. icon,
-    insertText = icon,
-    filterText = label,
-  })
-end
-
 function M.new()
   local self = setmetatable({}, { __index = M })
   return self
@@ -28,6 +17,19 @@ function M:get_trigger_characters()
 end
 
 function M:complete(_, callback)
+  if #items == 0 then
+    for _, entry in ipairs(icons) do
+      local label = entry[1]
+      local icon = entry[2]
+
+      table.insert(items, {
+        label = label .. ' ' .. icon,
+        insertText = icon,
+        filterText = label,
+      })
+    end
+  end
+
   callback({ items = items })
 end
 
