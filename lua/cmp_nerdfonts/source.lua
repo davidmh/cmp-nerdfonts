@@ -16,7 +16,7 @@ function M:get_trigger_characters()
   return { 'nf-' }
 end
 
-function M:complete(_, callback)
+function M:complete(params, callback)
   if #items == 0 then
     for _, entry in ipairs(icons) do
       local label = entry[1]
@@ -30,7 +30,12 @@ function M:complete(_, callback)
     end
   end
 
-  callback({ items = items })
+  -- Returning the full list of icons on manual completion is too noisy to be useful
+  if (params.context.option.reason == 'manual') then
+    callback({ items = {} })
+  else
+    callback({ items = items })
+  end
 end
 
 return M
