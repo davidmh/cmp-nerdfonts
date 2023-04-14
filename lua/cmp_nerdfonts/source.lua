@@ -23,7 +23,7 @@ function M:complete(params, callback)
       local icon = entry[2]
 
       table.insert(items, {
-        label = label .. ' ' .. icon,
+        label = icon .. ' ' .. label,
         insertText = icon,
         filterText = label,
       })
@@ -31,7 +31,7 @@ function M:complete(params, callback)
   end
 
   -- Returning the full list of icons on manual completion is too noisy to be useful
-  if (params.context.option.reason == 'manual') then
+  if params.context.option.reason == 'manual' then
     callback({ items = {} })
   else
     callback({ items = items })
